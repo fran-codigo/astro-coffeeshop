@@ -1,3 +1,18 @@
-<header>
+---
+interface Props {
+  bgImage: string;
+}
+
+const { bgImage } = Astro.props;
+---
+
+<header class="min-h-72 relative">
+  <div style={{
+    backgroundImage: `url(${bgImage})`,
+  }} class="inset-0 absolute bg-center bg-cover">
+  </div>
+
+  <div class="absolute inset-0 bg-black/60">
+  </div>
   <h1>Header</h1>
 </header>
