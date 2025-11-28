@@ -2,7 +2,6 @@
 
 @theme {
   --default-font-family: "Outfit", sans-serif;
-
   /* Colors */
   --color-coffee-50: #fcf8ee;
   --color-coffee-100: #f5ebd0;
@@ -29,4 +28,8 @@
   height: var(--icon-size);
   display: block;
   margin-inline: auto;
+}
+
+@utility font-secondary {
+  font-family: "Pt Sans", sans-serif;
 }
