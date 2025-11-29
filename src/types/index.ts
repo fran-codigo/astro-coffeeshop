@@ -39,3 +39,10 @@ export const ProcessWPSchema = BaseWPSchema.extend({
     subtitle: z.string(),
   }).catchall(processSchema)
 })
+
+export const PostSchema = BaseWPSchema.omit({
+  acf: true,
+})
+export const PostsSchema = z.array(PostSchema);
+
+export type Post = z.infer<typeof PostSchema>;
