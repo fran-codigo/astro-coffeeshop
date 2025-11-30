@@ -32,19 +32,22 @@ export const BaseWPSchema = z.object({
 const processSchema = z.object({
   title: z.string(),
   description: z.string(),
-  image: z.string()
-}); 
+  image: z.string(),
+});
 
 export const ProcessWPSchema = BaseWPSchema.extend({
-  acf: z.object({
-    subtitle: z.string(),
-  }).catchall(processSchema)
-})
+  acf: z
+    .object({
+      subtitle: z.string(),
+    })
+    .catchall(processSchema),
+});
 
 const CategorySchema = z.object({
   name: z.string(),
   slug: z.string(),
 });
+export const CategoriesSlugSchema = z.array(CategorySchema.pick({ slug: true }));
 const CategoriesSchema = z.array(CategorySchema);
 
 export const PostSchema = BaseWPSchema.omit({
@@ -52,7 +55,7 @@ export const PostSchema = BaseWPSchema.omit({
 }).extend({
   date: z.string(),
   category_details: CategoriesSchema,
-})
+});
 export const PostsSchema = z.array(PostSchema);
 
 export type Post = z.infer<typeof PostSchema>;
