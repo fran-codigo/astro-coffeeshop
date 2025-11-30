@@ -1,5 +1,5 @@
 ---
-import { CategoriesSlugSchema } from "@/types";
+import { CategorySchema,CategoriesSlugSchema } from "@/types";
 
 export async function getStaticPaths() {
   const res = await fetch(
@@ -11,6 +11,14 @@ export async function getStaticPaths() {
     params: { slug: category.slug },
   }));
 }
+
+const { slug } = Astro.params;
+
+const catUrl = `${import.meta.env.API_URL}/categories?slug=${slug}`;
+const catRes = await fetch(catUrl);
+const catJson = await catRes.json();
+const category = CategorySchema.parse(catJson[0]);
+console.log(category);
 ---
 
 <h1>Desde categoria</h1>
