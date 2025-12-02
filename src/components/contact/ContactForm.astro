@@ -53,3 +53,13 @@
     />
   </form>
 </div>
+
+<script>
+import { actions } from "astro:actions";
+
+    const form = document.querySelector('form');
+    form?.addEventListener('submit', async (e) => {
+        e.preventDefault()
+        actions.contact.sendEmail()
+    })
+</script>

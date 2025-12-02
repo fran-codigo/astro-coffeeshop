@@ -21,12 +21,8 @@ const data = ContactPageSchema.parse(json[0]);
   />
 
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-5">
+    <ContactForm />
 
-    <ContactForm/>
-    
-    <LocationMap 
-    location={data.acf.location}
-    />
+    <LocationMap location={data.acf.location} />
   </div>
-  
 </Layout>
