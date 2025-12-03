@@ -55,11 +55,29 @@
 </div>
 
 <script>
-import { actions } from "astro:actions";
+import { actions ,isInputError} from "astro:actions";
+import {Notyf} from 'notyf'
+import 'notyf/notyf.min.css'
 
-    const form = document.querySelector('form');
-    form?.addEventListener('submit', async (e) => {
-        e.preventDefault()
-        actions.contact.sendEmail()
-    })
+  const form = document.querySelector("form");
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+
+    const { data, error } = await actions.contact.sendEmail(formData);
+    const inputErrors = isInputError(error) ? error.issues : [];
+    
+    if(inputErrors) {
+        const notyf = new Notyf({
+            position: {x: 'right', y: 'top'},
+            duration: 3500,
+            ripple: false,
+        });
+        inputErrors.forEach((error) => {
+            notyf.error(error.message);
+        }); 
+    }
+  });
 </script>

@@ -14,3 +14,7 @@ export function formatAmount($amount: number) : string {
         currency: 'MXN',
     }).format($amount);
 }
+
+export function nullToEmptyString(arg: unknown) {
+    return arg ?? "";
+}
