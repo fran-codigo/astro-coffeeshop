@@ -23,11 +23,34 @@ export const contact = {
       ),
       message: z.preprocess(
         nullToEmptyString,
-        z.string().min(15, { message: "El mensaje es obligatorio o es muy corto" })
+        z
+          .string()
+          .min(15, { message: "El mensaje es obligatorio o es muy corto" })
       ),
     }),
-    handler: (input) => {
-      console.log(input);
+    handler: async (input) => {
+      const url = `${
+        import.meta.env.HOME_URL
+      }/wp-json/contact-form-7/v1/contact-forms/142/feedback`;
+
+      const formData = new FormData();
+      formData.append("your-name", input.name);
+      formData.append("your-email", input.email);
+      formData.append("your-subject", input.subject);
+      formData.append("your-message", input.message);
+      formData.append("_wpcf7_unit_tag", "wpcf709");
+
+      const res = await fetch(url, {
+        method: "POST",
+        body: formData,
+      });
+
+      await res.json();
+
+      return {
+        error: false,
+        message: "Tu mensaje se ha enviado correctamente.",
+      };
     },
   }),
 };
