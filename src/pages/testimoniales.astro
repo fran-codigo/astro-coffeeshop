@@ -2,6 +2,7 @@
 import { Picture } from "astro:assets";
 import Layout from "@/layouts/Layout.astro";
 import { BaseWPSchema } from "@/types/index.ts";
+import TestimonialsGrid from "@/components/testimonials/TestimonialsGrid.astro";
 
 const url = `${import.meta.env.API_URL}/pages?slug=testimoniales`;
 const res = await fetch(url);
@@ -18,4 +19,6 @@ const data = BaseWPSchema.parse(json[0]);
     set:html={data.content.rendered}
     class="text-xl space-y-3 mt-10 lg:mt-0"
   />
+
+  <TestimonialsGrid/>
 </Layout>

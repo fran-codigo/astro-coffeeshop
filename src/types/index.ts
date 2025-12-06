@@ -95,6 +95,13 @@ const LocationSchema = z.object({
   markers: z.array(MarkerSchema),
 });
 
+const TestimonialSchema = BaseWPSchema.pick({
+  title: true,
+  content: true,
+})
+
+export const TestimonialsSchema = z.array(TestimonialSchema);
+
 export const ContactPageSchema = BaseWPSchema.extend({
   acf: z.object({
       subtitle: z.string(),
