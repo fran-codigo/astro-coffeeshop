@@ -1,0 +1,1 @@
+import{P as e,_ as i}from"./photoswipe.DYEyfI4O.js";const t=new e({gallery:"#gallery",children:"a",pswpModule:()=>i(()=>import("./photoswipe.esm.CKV1Bsxh.js"),[])});t.init();document.addEventListener("astro:after-swap",()=>{t.init()});
